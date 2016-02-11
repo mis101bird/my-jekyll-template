@@ -1,0 +1,22 @@
+# Site navigation links
+
+- title: ABOUT
+  url:
+  excerpt: "ABOUT"
+  image:
+
+- title: PORTFOLIO
+  url:
+  excerpt: "PORTFOLIO"
+  image:
+
+- title: PEOPLE 
+  url:
+  excerpt: "PEOPLE "
+  image:
+
+- title: KICK
+  url:
+  excerpt: "KICK"
+  image:
+

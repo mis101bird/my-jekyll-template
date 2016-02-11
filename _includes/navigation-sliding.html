@@ -1,0 +1,23 @@
+<nav role="navigation" id="js-menu" class="sliding-menu-content">
+  <h5>{{ site.title }} <span>{{ site.data.messages.locales[site.locale].toc }}</span></h5>
+  <ul class="menu-item">
+    {% for link in site.categories.works limit: 4 %}
+ 
+    <li>
+      <a href="{{ site.url }}{{ link.url }}">
+        {% if link.image.teaser %}<img src="{{ site.url }}/images/{{ link.image.teaser }}" alt="teaser" itemprop="image">
+    {% else %}<img src="{{ site.url }}/images/{{ site.teaser }}" alt="teaser" itemprop="image">{% endif %}
+        <div class="title">{% if link.date %}<time datetime="{{ link.date | date: "%Y-%m-%d" }}" itemprop="datePublished">{{ link.date | date: "%B %d, %Y" }}</time>{% endif %}<br/>{{ link.title }}</div>
+        {% if link.excerpt %}<p class="excerpt">{{ link.excerpt | strip_html | truncate: 160 }}</p>{% endif %}
+      </a>
+      </li>
+    
+    {% endfor %}
+  </ul>
+</nav>
+<button type="button" id="js-menu-trigger" class="sliding-menu-button lines-button x2 " role="button" aria-label="Toggle Navigation">
+  <span class="nav-lines"></span>
+</button>
+
+<div id="js-menu-screen" class="menu-screen"></div>
+{% for post in site.categories.media %} {% include post-grid.html %} {% endfor %}
