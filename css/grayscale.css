@@ -359,6 +359,15 @@ footer p {
     background: #fcfcfc;
     background: rgba(255,255,255,.2);
 }
+img.graychange{
+  opacity: 0.8;
+  -webkit-filter: contrast(1.5) grayscale(100%);
+  transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
+  transition-duration: .5s, .1s, .1s, .1s;
+}
+img.graychange:hover{
+ -webkit-filter: inherit;
+}
 
 img::selection {
     background: 0 0;
