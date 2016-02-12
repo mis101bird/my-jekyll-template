@@ -124,7 +124,7 @@
     <section id="PORTFOLIO" class="content-section text-center">
     <div class="container">
         {% for post in site.categories.works limit: 4 %} {% include post-grid.html %} {% endfor %}
-        <a href="/works/" class="btn btn-default btn-lg">See more works...</a>
+        <a href="{{ site.url }}/works/" class="btn btn-default btn-lg">See more works...</a>
     </div>
     </section>
 
