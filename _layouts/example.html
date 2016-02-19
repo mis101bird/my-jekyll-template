@@ -18,11 +18,31 @@
     {% endif %}
     {% include open-graph.html %}
 
+<style>
+#scroll ul{margin:0;padding:0;}
+#scroll li {margin:0;padding:0;list-style:none;}
+.scroll {margin:0 auto;overflow:hidden;width:1280px;height:560px;}
+.scroll_list {width:6000px;height:560px;}
+.scroll_list li {float:left;width:1280px;height:560px;}
+.top_scroll {position:relative;margin:-560px auto 0;width:960px;height:560px;}
+.dir_btn {width:1000px;}
+.left_btn, .right_btn {position:absolute;width:50px;height:200px;top:50%;margin-top:-100px;}
+.left_btn {left:-10%;background:url(images/dir_btn.png) no-repeat 0 0;}
+.left_btn:hover {background-position:0 -200px;}
+.right_btn {right:-10%;margin-top:-100px;background:url(images/dir_btn.png) no-repeat right 0;}
+.right_btn:hover {background-position:right -200px;}
+# flipWords{
+  -vendor-animation-duration: 1s;
+  -vendor-animation-delay: 0s;
+  -vendor-animation-iteration-count: infinite;
+}
+</style>
+   
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
 
     <link href="{{ site.url }}/atom.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Atom Feed">
     <link href="{{ site.url }}/sitemap.xml" type="application/xml" rel="sitemap" title="Sitemap">
-
+    <link rel="stylesheet" href="{{ site.url }}/css/animate-min.css">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +59,7 @@
     <link href="{{ site.url }}/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}/css/flexslider.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +67,62 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script type="text/javascript" src="{{ site.url }}/js/jquery.flexslider-min.js"></script>
+<script src="http://libs.useso.com/js/jquery/1.7.2/jquery.min.js"></script>
+<script>
+var nBannerSizeL;
+$(function(){
+    var slideTimeL=400, slideTimeS=600, pics=4, curIndex=0, nBannerSizeS=219, oBannerS=$("#phoneUiList");
+    function fnSlideLeft(){
+        if(curIndex<pics-1){
+            oBannerL.animate({marginLeft:"-="+nBannerSizeL},slideTimeL);
+            oBannerS.animate({marginLeft:"-="+nBannerSizeS},slideTimeS);
+            curIndex++;
+        }
+        else {
+            oBannerL.animate({marginLeft:"0px"},slideTimeL);
+            oBannerS.animate({marginLeft:"0px"},slideTimeS);
+            curIndex=0;
+        }
+    }
+    function fnSlideRight(){
+        if(curIndex>0){
+            oBannerL.animate({marginLeft:"+="+nBannerSizeL},slideTimeL);
+            oBannerS.animate({marginLeft:"+="+nBannerSizeS},slideTimeS);
+            curIndex--;
+            
+        }
+        else {
+            oBannerL.animate({marginLeft:-nBannerSizeL*(pics-1)+"px"},slideTimeL);
+            oBannerS.animate({marginLeft:-nBannerSizeS*(pics-1)+"px"},slideTimeS);
+            curIndex=pics-1;
+        }
+    }
+    
+    var slideAni=setInterval(fnSlideLeft,6000);
+    
+    $("#leftBtn").click(function(){
+        clearInterval(slideAni);
+        slideAni=setInterval(fnSlideLeft,6000);
+        if(oBannerL.is(":animated") || oBannerS.is(":animated")){
+            oBannerL.stop(true,true);
+            oBannerS.stop(true,true);
+        }
+        else {fnSlideRight();}
+    })
+    
+    $("#rightBtn").click(function(){
+        clearInterval(slideAni);
+        slideAni=setInterval(fnSlideLeft,3000);
+        if(oBannerL.is(":animated") || oBannerS.is(":animated")){
+            oBannerL.stop(true,true);
+            oBannerS.stop(true,true);
+        }
+        else {fnSlideLeft();}
+    })
+})
 
+</script>
 </head>
 
 <body id="js-body" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -91,28 +167,58 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Intro Header -->
-    <header class="intro">
+<!-- Intro Header -->
+<div id="scroll" class="scroll">
+<div id="scrollIn" class="scroll_in">
+        <ul id="scrollList" class="scroll_list">
+            <li>
+    <header class="intro intro-bg1">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">歡迎來到<br/>ShihYao-site</h1>
                         <p class="intro-text">酷！A free, responsive, one page Bootstrap theme.<br>Created by Start Bootstrap.</p>
-                        <a href="#ABOUT" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+            </li>
+            <li>
+     <header class="intro intro-bg2">
+    </header>
+            </li>
+            <li>
+    <header class="intro intro-bg3">
+    </header>
+            </li>
+            <li>
+     <header class="intro intro-bg4">
+    </header>
+            </li>
+         </ul>
+            <script>
+            var oBannerL=$("#scrollList");
+            function fnResize(){
+                nBannerSizeL=$("body").innerWidth();
+                $("#scroll,#scrollList li").width(nBannerSizeL);
+            }
+            fnResize();
+            </script>
+
+</div>
+</div>
+<div id="topScroll" class="top_scroll"> 
+    <a id="leftBtn" class="left_btn" href="javascript:;" hidefocus="true"></a>
+    <a id="rightBtn" class="right_btn" href="javascript:;" hidefocus="true"></a>
+</div>
 
     <!-- About Section -->
     <section id="ABOUT" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Grayscale</h2>
+                <h2 id="flipWords" class="animated fadeInDown">About Grayscale</h2>
                 <p>歡迎光臨Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
                 <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
                 <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>

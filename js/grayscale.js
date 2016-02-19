@@ -16,13 +16,28 @@ function collapseNavbar() {
 $(window).scroll(collapseNavbar);
 $(document).ready(collapseNavbar);
 
+var flipnumber=0;
 // jQuery for page scrolling feature - requires jQuery Easing plugin
 $(function() {
+
+    var wordsAnimate=setInterval(function(){ 
+     if(flipnumber%8==7){
+      $('#flipWords').text('About Grayscale');
+    }else if(flipnumber%8==1){
+      $('#flipWords').text('Super Cool');
+    }else if(flipnumber%8==3){
+      $('#flipWords').text('Crash on me');
+    }else if(flipnumber%8==5){
+      $('#flipWords').text('Who are you');
+    }
+     $('#flipWords').toggleClass('animated '+'fadeInDown').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', changeWord());
+    }, 2000);
+    
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
+        }, 2200, 'easeInOutExpo');
         event.preventDefault();
     });
 });
@@ -33,7 +48,10 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
   }
 });
-
+function changeWord(){
+    flipnumber++;
+    $('#flipWords').toggleClass('animated ' + "fadeOutDown");
+}
 // Google Maps Scripts
 var map = null;
 // When the window has finished loading create our google map below
